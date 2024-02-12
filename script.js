@@ -12,7 +12,7 @@ function getComputerChoice() {
     return choice;
 }
 
-function playTheGame() {
+function playRound() {
     let playerChoice = prompt('Choose your move: ').toLowerCase()
     let computerChoice = getComputerChoice()
     if (playerChoice === computerChoice) {
@@ -37,3 +37,24 @@ function playTheGame() {
         return 'You loose! Rock beats scissors'
     }
 }
+
+function PlayGame(rounds=5) {
+    let computerScore;
+    let playerScore;
+    for (let i = 0; i < rounds; i++) {
+        playRound();
+        if (playRound.charAt(4) === 'w') {
+            playerScore++
+        }
+        else if (playRound.charAt(4) === 'l') {
+            computerScore++
+        }
+    }
+    if (playerScore > computerScore) {
+        return 'Congratulations! You have won the game!'
+    } else if (playerScore < computerScore) {
+        return 'Sadge! You have lost! Game over for you'
+    } else { 
+        return 'It is a tie! You have played fiercely'
+    }
+} 
