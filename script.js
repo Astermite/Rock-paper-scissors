@@ -38,17 +38,18 @@ function playRound() {
     }
 }
 
-function PlayGame(rounds=5) {
-    let computerScore;
-    let playerScore;
+function playGame(rounds=5) {
+    let computerScore = 0;
+    let playerScore = 0;
     for (let i = 0; i < rounds; i++) {
-        playRound();
-        if (playRound.charAt(4) === 'w') {
+        let round = playRound();
+        if (round.charAt(4) === 'w') {
             playerScore++
         }
-        else if (playRound.charAt(4) === 'l') {
+        else if (round.charAt(4) === 'l') {
             computerScore++
         }
+        console.log(round)
     }
     if (playerScore > computerScore) {
         return 'Congratulations! You have won the game!'
