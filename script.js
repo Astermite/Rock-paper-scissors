@@ -38,24 +38,31 @@ function playRound() {
     }
 }
 
-function playGame(rounds=5) {
-    let computerScore = 0;
-    let playerScore = 0;
-    for (let i = 0; i < rounds; i++) {
-        let round = playRound();
-        if (round.charAt(4) === 'w') {
-            playerScore++
-        }
-        else if (round.charAt(4) === 'l') {
-            computerScore++
-        }
-        console.log(round)
-    }
-    if (playerScore > computerScore) {
-        return 'Congratulations! You have won the game!'
-    } else if (playerScore < computerScore) {
-        return 'Sadge! You have lost! Game over for you'
-    } else { 
-        return 'It is a tie! You have played fiercely'
-    }
-} 
+let rockBtn = document.querySelector('.rock')
+let paperBtn = document.querySelector('.paper')
+let ScissorsBtn = document.querySelector('.scissors') 
+
+rockBtn.addEventListener('click', playRound)
+
+// function playGame(rounds=5) {
+//     let computerScore = 0;
+//     let playerScore = 0;
+//     for (let i = 0; i < rounds; i++) {
+//         let round = playRound();
+//         if (round.charAt(4) === 'w') {
+//             playerScore++
+//         }
+//         else if (round.charAt(4) === 'l') {
+//             computerScore++
+//         }
+//         console.log(round)
+//     }
+//     if (playerScore > computerScore) {
+//         return 'Congratulations! You have won the game!'
+//     } else if (playerScore < computerScore) {
+//         return 'Sadge! You have lost! Game over for you'
+//     } else { 
+//         return 'It is a tie! You have played fiercely'
+//     }
+// } 
+
