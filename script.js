@@ -20,6 +20,9 @@ const paperBtn = document.querySelector(".paper")
 const scissorsBtn = document.querySelector(".scissors")
 const resultPanel = document.querySelector('.result')
 const finalResult = document.querySelector('.final_result')
+const resetBtn = document.querySelector('.reset')
+
+resetBtn.addEventListener('click', () => hardReset())
 
 if (rockBtn && paperBtn && scissorsBtn) {
     rockBtn.addEventListener('click', () => playRound('rock', getComputerChoice()))
@@ -52,7 +55,8 @@ function playRound(playerChoice, computerChoice) {
     if (playerChoice === 'scissors' && computerChoice === 'rock') {
         resultPanel.textContent ='You loose! Rock beats scissors'
     }
-    checkScore()    
+    checkScore();
+    setReset();
 }
 
 function checkScore() {
@@ -64,6 +68,22 @@ function checkScore() {
     }
     if (playerScore >= 5) finalResult.textContent = 'You won the game! Congratulations!';
     if (computerScore >= 5) finalResult.textContent = 'You lost the game. Computer wins!' 
+    
+}
+
+function hardReset() {
+    playerScore = 0;
+    computerScore = 0;
+    finalResult.textContent = '';
+    resultPanel.textContent = '';
+}
+function setReset() {
+    if (playerScore === 6 || computerScore === 6) {
+        playerScore = 0;
+        computerScore = 0;
+        finalResult.textContent = '';
+        resultPanel.textContent = '';
+    }
 }
 // function playGame(rounds=5) {
 
