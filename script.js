@@ -12,41 +12,61 @@ function getComputerChoice() {
     return choice;
 }
 
-function playRound() {
-    let playerChoice = prompt('Choose your move: ').toLowerCase()
-    let computerChoice = getComputerChoice()
+let computerScore = 0;
+let playerScore = 0;
+
+const rockBtn = document.querySelector(".rock")
+const paperBtn = document.querySelector(".paper")
+const scissorsBtn = document.querySelector(".scissors")
+const resultPanel = document.querySelector('.result')
+const finalResult = document.querySelector('.final_result')
+
+if (rockBtn && paperBtn && scissorsBtn) {
+    rockBtn.addEventListener('click', () => playRound('rock', getComputerChoice()))
+    paperBtn.addEventListener('click', () => playRound('paper', getComputerChoice()))
+    scissorsBtn.addEventListener('click', () => playRound('scissors', getComputerChoice()))
+} else {
+    console.error("One or more buttons not found.") }
+    
+function playRound(playerChoice, computerChoice) {
+    // let playerChoice = prompt('Choose your move: ').toLowerCase()
+    // let computerChoice = getComputerChoice()
     if (playerChoice === computerChoice) {
-        return 'It is a tie!'
+        resultPanel.textContent = "It's a tie!"
     }
     if (playerChoice === 'rock' && computerChoice === 'paper') {
-        return 'You loose! Paper beats Rock'
+        resultPanel.textContent = 'You loose! Paper beats Rock'
     }
     if (playerChoice === 'rock' && computerChoice === 'scissors') {
-        return 'You win! Rock beats scissors'
+        resultPanel.textContent ='You win! Rock beats scissors'
     }
     if (playerChoice === 'paper' && computerChoice === 'rock') {
-        return 'You win! Paper beats Rock'
+        resultPanel.textContent ='You win! Paper beats Rock'
     }
     if (playerChoice === 'paper' && computerChoice === 'scissors') {
-        return 'You loose! Scissors beat paper'
+        resultPanel.textContent ='You loose! Scissors beat paper'
     }
     if (playerChoice === 'scissors' && computerChoice === 'paper') {
-        return 'You win! Scissors beat paper'
+        resultPanel.textContent ='You win! Scissors beat paper'
     }
     if (playerChoice === 'scissors' && computerChoice === 'rock') {
-        return 'You loose! Rock beats scissors'
+        resultPanel.textContent ='You loose! Rock beats scissors'
     }
+    checkScore()    
 }
 
-let rockBtn = document.querySelector('.rock')
-let paperBtn = document.querySelector('.paper')
-let ScissorsBtn = document.querySelector('.scissors') 
-
-rockBtn.addEventListener('click', playRound)
-
+function checkScore() {
+    if (resultPanel.textContent.charAt(4)=== 'w') {
+        playerScore++
+    }
+    else if (resultPanel.textContent.charAt(4) === 'l') {
+        computerScore++
+    }
+    if (playerScore >= 5) finalResult.textContent = 'You won the game! Congratulations!';
+    if (computerScore >= 5) finalResult.textContent = 'You lost the game. Computer wins!' 
+}
 // function playGame(rounds=5) {
-//     let computerScore = 0;
-//     let playerScore = 0;
+
 //     for (let i = 0; i < rounds; i++) {
 //         let round = playRound();
 //         if (round.charAt(4) === 'w') {
